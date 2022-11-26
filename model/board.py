@@ -12,6 +12,11 @@ class Board(object):
         self._generate_board()
         self.cars: {str: Car} = {}
         self.key_car = None
+        self.action = None
+
+    def __lt__(self, other):
+        """Compare the current board with another board"""
+        return self.line < other.line
 
     def _generate_board(self):
         """Generate the board"""
@@ -22,7 +27,7 @@ class Board(object):
 
     def add_car(self, car):
         """Add a car to the board"""
-        for location in car.get_occupied_locations():
+        for location in car.get_occupied_locations(update=True):
             self.board[location['x']][location['y']] = car.name
         self.cars[car.name] = car
         if car.key_car:
@@ -30,7 +35,7 @@ class Board(object):
             self.key_car = car.name
 
     def is_car_movable(self, car_name, direction, steps=1):
-        """TODO: Check if the car is movable"""
+        """Check if the car is movable"""
         if self.cars[car_name].is_movable(will_move=steps):
             if direction is Direction.FORWARD:
                 return self._is_car_movable_forward(self.cars[car_name], steps)
@@ -38,7 +43,7 @@ class Board(object):
                 return self._is_car_movable_backward(self.cars[car_name], steps)
         return False
 
-    def to_line(self):
+    def _update_line(self):
         """Convert the current board to a line"""
         line = ''
         for i in range(self.height):
@@ -47,7 +52,11 @@ class Board(object):
                     line += self.board[i][j]
                 else:
                     line += '.'
-        return line
+        self.line = line
+
+    def get_line(self):
+        """Get the line of the current board"""
+        return self.line
 
     def __str__(self):
         """Print the board"""
@@ -67,7 +76,7 @@ class Board(object):
             string += '\n'
         if fuels != 'Car fuel available: ':
             string += '\n' + fuels
-        return string + '\n'
+        return string
 
     def _is_car_movable_forward(self, car, steps):
         """Check if the car is movable forward"""
@@ -135,6 +144,8 @@ class Board(object):
         for location in new_car.get_occupied_locations():
             self.board[location['x']][location['y']] = new_car.name
         self.cars[car_name] = new_car
+        self.action = (self.cars[car_name].name, self.cars[car_name].get_direction(direction), steps)
+        self._update_line()
 
     def get_children(self):
         """Get all the children of the current board"""

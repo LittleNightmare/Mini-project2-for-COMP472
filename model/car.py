@@ -10,24 +10,32 @@ class Car(object):
         self.start_position = {'x': 0, 'y': 0}
         self.end_position = {'x': 0, 'y': 0}
         self.occupied_location = []
+        self.orientation = None
 
     def get_orientation(self):
         """Get the orientation of the car"""
-        if self.start_position['x'] == self.end_position['x']:
-            return Orientation.HORIZONTAL
-        else:
-            return Orientation.VERTICAL
+        if self.orientation is None:
+            if self.start_position['x'] == self.end_position['x']:
+                self.orientation = Orientation.HORIZONTAL
+            else:
+                self.orientation = Orientation.VERTICAL
+        return self.orientation
 
-    def get_occupied_locations(self):
+    def _update_occupied_locations(self):
         """Get the occupied locations of the car"""
         self.occupied_location = []
-        orientation = self.get_orientation()
-        if orientation is Orientation.HORIZONTAL:
+        self.get_orientation()
+        if self.orientation is Orientation.HORIZONTAL:
             for i in range(self.start_position['y'], self.end_position['y'] + 1):
                 self.occupied_location.append({'x': self.start_position['x'], 'y': i})
-        elif orientation is Orientation.VERTICAL:
+        elif self.orientation is Orientation.VERTICAL:
             for i in range(self.start_position['x'], self.end_position['x'] + 1):
                 self.occupied_location.append({'x': i, 'y': self.start_position['y']})
+
+    def get_occupied_locations(self, update=False):
+        """Get the occupied locations of the car"""
+        if update:
+            self._update_occupied_locations()
         return self.occupied_location
 
     def is_movable(self, will_move=0):
@@ -45,7 +53,7 @@ class Car(object):
                 self.start_position['y'] += 1
                 self.end_position['y'] += 1
             self.used_fuel += 1
-
+            self._update_occupied_locations()
             return True
         return False
 
@@ -61,6 +69,7 @@ class Car(object):
                 self.end_position['y'] -= 1
 
             self.used_fuel += 1
+            self._update_occupied_locations()
             return True
         return False
 
