@@ -5,7 +5,7 @@ from model.car import Car
 class Loader(object):
     def __init__(self, file_name):
         self.file_name = file_name
-        self.games = []
+        self.games: [Board] = []
         lines = self._load_file()
         for line in lines:
             self._load_game(line)
@@ -35,6 +35,7 @@ class Loader(object):
                     if char not in cars.keys():
                         cars[char] = Car(char, key_car=is_main_car)
                         cars[char].start_position = {'x': i, 'y': j}
+                        cars[char].end_position = {'x': i, 'y': j}
                     else:
                         cars[char].end_position = {'x': i, 'y': j}
 
