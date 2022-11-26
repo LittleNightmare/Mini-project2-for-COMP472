@@ -16,3 +16,9 @@ class Movement(Enum):
     RIGHT = 'Right'
     UP = 'Up'
     DOWN = 'Down'
+
+
+class Status(Enum):
+    SOLVED = 'Solved'
+    PROCESSING = 'Processing'
+    FAILURE = 'No solution'

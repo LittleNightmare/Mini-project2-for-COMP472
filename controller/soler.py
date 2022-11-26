@@ -1,4 +1,4 @@
-from enums import Direction, Orientation
+from enums import Direction, Orientation, Status
 from model.board import Board
 from model.car import Car
 from queue import PriorityQueue
@@ -9,6 +9,8 @@ class Solver(object):
         self.board = board
         self.solution: [int, Board, []] = None
         self.logs = ''
+        self.search_length = 0
+        self.status = Status.PROCESSING
 
     def uniform_cost_search(self):
         """Uniform cost search"""
@@ -36,11 +38,12 @@ class Solver(object):
             # get the current state
             state: Board = node[1][-1]
             log = f"{f} {g} {h} {state.get_line()}{state.moved_cars_str()}"
-            print(log)
+            # print(log)
             self.logs += log+"\n"
             # check if the state is the goal state
             if state.is_game_win():
                 self.solution = node
+                self.status = Status.SOLVED
                 return True
             # mark the state as visited
             visited.append(state.get_line())
@@ -48,6 +51,7 @@ class Solver(object):
             children: [Board] = state.get_children()
             # loop through each child
             for child in children:
+
                 path = node[1].copy()
                 new_cost = len(path)
                 child_line = child.get_line()
@@ -66,6 +70,7 @@ class Solver(object):
                 if not in_queue and child_line not in visited:
                     # push the node into the queue
                     queue.put(new_node)
+                    self.search_length += 1
                 elif in_queue:
                     # get the node from the queue
                     old_node = queue.queue[index]
@@ -76,8 +81,21 @@ class Solver(object):
                         # replace the old node with the new node
                         queue.queue.pop(index)
                         queue.put(new_node)
+        self.status = Status.FAILURE
         return False
 
-    def __str__(self):
-        """Print the board"""
-        return str(self.board)
+    def get_solution_path(self):
+        """Get the solution path"""
+        if self.status is Status.SOLVED:
+            short_path = ""
+            detail_path = ""
+            path = self.solution[1][1:]
+            for state in path:
+                name, direction, steps = state.action
+                short_path += f" {name} {direction.value} {steps};"
+                detail_path += f"{name} {direction.value.rjust(5)} {steps}  " \
+                               f"     "
+                detail_path += f"{state.cars[name].fuel-state.cars[name].used_fuel} "\
+                               f"{state.get_line()} {state.moved_cars_str()}\n"
+            return short_path[:-1], detail_path
+        return None

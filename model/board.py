@@ -61,21 +61,13 @@ class Board(object):
     def __str__(self):
         """Print the board"""
         string = ''
-        fuels = 'Car fuel available: '
-        alter_fuels = '!'
         for i in range(self.height):
             for j in range(self.width):
                 if self.board[i][j] != 0:
                     string += self.board[i][j]
-                    # if self.board[i][j] not in fuels:
-                    #     fuels += f"{self.board[i][j]}:{self.cars[self.board[i][j]].fuel}, "
-                    # if self.cars[self.board[i][j]].fuel != 100 and self.board[i][j] not in alter_fuels:
-                    #     alter_fuels += f" {self.board[i][j]}{self.cars[self.board[i][j]].fuel}"
                 else:
                     string += "."
             string += '\n'
-        if fuels != 'Car fuel available: ':
-            string += '\n' + fuels
         return string
 
     def _is_car_movable_forward(self, car, steps):
@@ -176,3 +168,10 @@ class Board(object):
         for car in moved_cars:
             string += f" {car.name}{car.fuel - car.used_fuel}"
         return string
+
+    def get_fuel_state(self):
+        """Get the fuel state of the cars"""
+        fuel_state = ''
+        for name, car in self.cars.items():
+            fuel_state += f" {name}:{car.fuel - car.used_fuel},"
+        return fuel_state[:-1]
