@@ -11,6 +11,7 @@ class Board(object):
         self.line = line
         self._generate_board()
         self.cars: {str: Car} = {}
+        self.key_car = None
 
     def _generate_board(self):
         """Generate the board"""
@@ -24,6 +25,9 @@ class Board(object):
         for location in car.get_occupied_locations():
             self.board[location['x']][location['y']] = car.name
         self.cars[car.name] = car
+        if car.key_car:
+            # print(f"Key car is {car.name}")
+            self.key_car = car.name
 
     def is_car_movable(self, car_name, direction, steps=1):
         """TODO: Check if the car is movable"""
@@ -103,22 +107,15 @@ class Board(object):
 
     def is_game_win(self):
         """Check if the game is won"""
-        if self.board[2][5] == 0:
-            return False
-        car = self.cars[self.board[2][5]]
-        if not car.key_car:
-            return False
-        return True
+        locations = self.cars[self.key_car].get_occupied_locations()
+        if {'x': 2, 'y': 5} in locations:
+            return True
+        return False
 
     def get_child(self, car_name, direction, steps=1):
         """Get child of the current board"""
         if self.is_car_movable(car_name, direction, steps):
-            new_board = Board()
-            new_board.height = self.height
-            new_board.width = self.width
-            new_board.board = [row[:] for row in self.board]
-            new_board.cars = self.cars.copy()
-            new_board.line = self.line
+            new_board = deepcopy(self)
             new_board.move_car(car_name, direction, steps)
             return new_board
         return None
@@ -148,6 +145,8 @@ class Board(object):
                     child = self.get_child(car.name, direction, steps)
                     if child is not None:
                         children.append(child)
+                    else:
+                        break
         return children
 
     def moved_cars(self) -> [Car]:
