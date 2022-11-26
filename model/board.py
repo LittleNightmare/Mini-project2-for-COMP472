@@ -39,8 +39,8 @@ class Board(object):
         line = ''
         for i in range(self.height):
             for j in range(self.width):
-                if self.board[j][i] != 0:
-                    line += self.board[j][i]
+                if self.board[i][j] != 0:
+                    line += self.board[i][j]
                 else:
                     line += '.'
         return line
