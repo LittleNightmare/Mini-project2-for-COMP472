@@ -14,18 +14,18 @@ class Car(object):
     def get_orientation(self):
         """Get the orientation of the car"""
         if self.start_position['x'] == self.end_position['x']:
-            return Orientation.VERTICAL
-        else:
             return Orientation.HORIZONTAL
+        else:
+            return Orientation.VERTICAL
 
     def get_occupied_locations(self):
         """Get the occupied locations of the car"""
         self.occupied_location = []
         orientation = self.get_orientation()
-        if orientation is Orientation.VERTICAL:
+        if orientation is Orientation.HORIZONTAL:
             for i in range(self.start_position['y'], self.end_position['y'] + 1):
                 self.occupied_location.append({'x': self.start_position['x'], 'y': i})
-        elif orientation is Orientation.HORIZONTAL:
+        elif orientation is Orientation.VERTICAL:
             for i in range(self.start_position['x'], self.end_position['x'] + 1):
                 self.occupied_location.append({'x': i, 'y': self.start_position['y']})
         return self.occupied_location
@@ -39,11 +39,11 @@ class Car(object):
         if self.is_movable():
             orientation = self.get_orientation()
             if orientation is Orientation.VERTICAL:
-                self.start_position['y'] -= 1
-                self.end_position['y'] -= 1
+                self.start_position['x'] -= 1
+                self.end_position['x'] -= 1
             elif orientation is Orientation.HORIZONTAL:
-                self.start_position['x'] += 1
-                self.end_position['x'] += 1
+                self.start_position['y'] += 1
+                self.end_position['y'] += 1
             self.used_fuel += 1
 
             return True
@@ -54,11 +54,11 @@ class Car(object):
         if self.is_movable():
             orientation = self.get_orientation()
             if orientation is Orientation.VERTICAL:
-                self.start_position['y'] += 1
-                self.end_position['y'] += 1
+                self.start_position['x'] += 1
+                self.end_position['x'] += 1
             elif orientation is Orientation.HORIZONTAL:
-                self.start_position['x'] -= 1
-                self.end_position['x'] -= 1
+                self.start_position['y'] -= 1
+                self.end_position['y'] -= 1
 
             self.used_fuel += 1
             return True
