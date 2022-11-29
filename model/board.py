@@ -22,7 +22,7 @@ class Board(object):
 
     def __copy__(self):
         """Copy the current board"""
-        new_board = Board(line=(self.line+" "), h=self.height, w=self.width, create_init_board=False)
+        new_board = Board(line=(self.line + " "), h=self.height, w=self.width, create_init_board=False)
         new_board.key_car = self.key_car
         new_board.cars = self.cars.copy()
         new_board.remove_car = self.remove_car.copy()
@@ -71,14 +71,35 @@ class Board(object):
         """Get the line of the current board"""
         return self.line
 
+    def get_h(self, i=-1):
+        """Get the heuristic value"""
+        if i == 1:
+            return self.get_num_blocked_positions()
+        elif i == 2:
+            return self.get_num_blocking_vehicle()
+        elif i == 3:
+            constant = 7
+            return self.get_num_blocking_vehicle() * constant
+        elif i == 4:
+            # 0.3*h2 + 0.7*h3
+            constant = 7
+            return 0.3 * self.get_num_blocked_positions() + 0.3 * self.get_num_blocking_vehicle() * constant
+        return 0
+
     def get_num_blocking_vehicle(self):
         """Get the number of blocking vehicle"""
         mid_line = ''.join(map(str, self.board[2]))
-        pro_line = mid_line[self.cars[self.key_car].end_position['y']+1:].replace('.', '')
+        pro_line = mid_line[self.cars[self.key_car].end_position['y'] + 1:].replace('.', '')
         exist = set()
         for car_name in pro_line:
             exist.add(car_name)
         return len(exist)
+
+    def get_num_blocked_positions(self):
+        """Get the number of blocked positions"""
+        mid_line = ''.join(map(str, self.board[2]))
+        pro_line = mid_line[self.cars[self.key_car].end_position['y'] + 1:].replace('.', '')
+        return len(pro_line)
 
     def __str__(self):
         """Print the board"""

@@ -16,12 +16,19 @@ class Solver(object):
     def search(self):
         pass
 
+    def get_path(self):
+        """Get the solution path"""
+        if self.status is Status.SOLVED:
+            path = self.solution[1][1:]
+            return path
+        return None
+
     def get_solution_path(self):
         """Get the solution path"""
         if self.status is Status.SOLVED:
             short_path = ""
             detail_path = ""
-            path = self.solution[1][1:]
+            path = self.get_path()
             for state in path:
                 name, direction, steps = state.action
 

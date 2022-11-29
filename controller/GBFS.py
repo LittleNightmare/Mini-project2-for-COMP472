@@ -6,14 +6,15 @@ from model.board import Board
 
 
 class GBFS(Solver):
-    def __init__(self, board: Board):
+    def __init__(self, board: Board, heuristic=1):
         super().__init__(board)
+        self.heuristic = heuristic
 
     def search(self):
         """Greedy Best First Search"""
         queue = PriorityQueue()
         visited = []
-        f, g, h = 0, 0, self.board.get_num_blocking_vehicle()
+        f, g, h = 0, 0, self.board.get_h(self.heuristic)
         node = (h, [self.board])
         queue.put(node)
         while not queue.empty():
@@ -34,7 +35,7 @@ class GBFS(Solver):
             children: [Board] = state.get_children()
             for child in children:
                 path = node[1].copy()
-                new_cost = child.get_num_blocking_vehicle()
+                new_cost = child.get_h(self.heuristic)
                 child_line = child.get_line()
                 # path.append(child)
                 new_node = (new_cost, [child] + path)
@@ -58,22 +59,9 @@ class GBFS(Solver):
         self.status = Status.FAILURE
         return False
 
-    def get_solution_path(self):
+    def get_path(self):
         if self.status == Status.SOLVED:
-            short_path = ""
-            detail_path = ""
             path = self.solution[1][:-1]
-            for state in reversed(path):
-                name, direction, steps = state.action
-
-                if name in state.remove_car.keys():
-                    used_fuel = state.remove_car[name].fuel - state.remove_car[name].used_fuel
-                else:
-                    used_fuel = state.cars[name].fuel - state.cars[name].used_fuel
-                short_path += f" {name} {direction.value} {steps};"
-                detail_path += f"{name} {direction.value.rjust(5)} {steps}  " \
-                               f"     "
-                detail_path += f"{used_fuel} " \
-                               f"{state.get_line()} {state.moved_cars_str()}\n"
-            return short_path[:-1], detail_path
-            return None
+            path.reverse()
+            return path
+        return None
