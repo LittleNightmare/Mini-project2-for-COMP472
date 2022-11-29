@@ -1,13 +1,14 @@
 from enums import Direction, Orientation, Status
 from model.board import Board
 from model.car import Car
+
 from queue import PriorityQueue
 
 
 class Solver(object):
     def __init__(self, board: Board):
         self.board = board
-        self.solution: [int, Board, []] = None
+        self.solution: [int, [Board]] = None
         self.logs = ''
         self.search_length = 0
         self.status = Status.PROCESSING
@@ -43,7 +44,7 @@ class Solver(object):
             if state.is_game_win():
                 self.solution = node
                 self.status = Status.SOLVED
-                self.search_length = len(visited)+len(queue.queue)
+                self.search_length = len(visited)
                 return True
             # mark the state as visited
             visited.append(state.get_line())
@@ -71,7 +72,6 @@ class Solver(object):
                 if not in_queue and child_line not in visited:
                     # push the node into the queue
                     queue.put(new_node)
-                    # self.search_length += 1
                 elif in_queue:
                     # get the node from the queue
                     old_node = queue.queue[index]
