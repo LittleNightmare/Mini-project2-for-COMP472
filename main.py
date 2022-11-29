@@ -1,24 +1,28 @@
 import time
 
 from controller.loader import Loader
-from controller.soler import Solver
+from controller.UCS import UCS
+from controller.GBFS import GBFS
 from os import path
 
+INPUT_FILE = path.join(path.dirname(__file__), 'rush.txt')
+INPUT_FILE_SAMPLE = path.join(path.dirname(__file__), 'Sample', 'sample-input.txt')
+INPUT_FILE_EXAMPLE = path.join(path.dirname(__file__), 'Sample', 'example-input.txt')
 
 if __name__ == '__main__':
-    input_file = path.join(path.dirname(__file__), 'Sample', 'sample-input.txt')
-    loader = Loader(input_file)
+    input_file = INPUT_FILE_SAMPLE
+    loader = Loader(input_file, is_sample=True)
     for i, game in enumerate(loader.games):
         # if i != 1:
         #     continue
         print("--------------------------------------------------------------------------------")
-        solver = Solver(game)
+        solver = GBFS(game)
         print("\nInitial board configuration: " + game.get_line())
         print(f"!{game.moved_cars_str()}")
         print(f"{game}")
         print("Car fuel available:"+game.get_fuel_state())
         start = time.time()
-        if solver.uniform_cost_search():
+        if solver.search():
             end = time.time()
             print(f"\nRuntime: {round(end - start,2)} seconds")
             state = solver.solution[1][-1]
