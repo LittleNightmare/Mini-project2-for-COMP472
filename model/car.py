@@ -10,7 +10,7 @@ class Car(object):
         self.start_position = {'x': 0, 'y': 0}
         self.end_position = {'x': 0, 'y': 0}
         self.occupied_location = []
-        self.orientation = None
+        self.orientation: Orientation = None
 
     def __copy__(self, copy_occupied_location=True):
         """Copy the car"""

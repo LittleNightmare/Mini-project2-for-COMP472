@@ -1,6 +1,5 @@
 from enums import Direction, Orientation
 from model.car import Car
-from copy import deepcopy
 
 
 class Board(object):
@@ -12,19 +11,23 @@ class Board(object):
         if create_init_board:
             self._generate_board()
         self.cars: {str: Car} = {}
+        self.remove_car: {str: Car} = {}
         self.key_car = None
         self.action = None
+        self.moved_count = 0
 
     def __lt__(self, other):
         """Compare the current board with another board"""
-        return self.line < other.line
+        return self.moved_count < other.moved_count
 
     def __copy__(self):
         """Copy the current board"""
         new_board = Board(line=(self.line+" "), h=self.height, w=self.width, create_init_board=False)
         new_board.key_car = self.key_car
         new_board.cars = self.cars.copy()
+        new_board.remove_car = self.remove_car.copy()
         new_board.board = [row.copy() for row in self.board]
+        new_board.moved_count = self.moved_count
         # print(f"copy result: {id(new_board)==id(self) or id(new_board.cars)==id(self.cars) or id(new_board.board)==id(self.board) or id(new_board.key_car)==id(self.key_car) or id(new_board.line)==id(self.line) or id(new_board.action)==id(self.action)}")
         return new_board
 
@@ -67,6 +70,15 @@ class Board(object):
     def get_line(self):
         """Get the line of the current board"""
         return self.line
+
+    def get_num_blocking_vehicle(self):
+        """Get the number of blocking vehicle"""
+        mid_line = ''.join(map(str, self.board[2]))
+        pro_line = mid_line[self.cars[self.key_car].end_position['y']+1:].replace('.', '')
+        exist = set()
+        for car_name in pro_line:
+            exist.add(car_name)
+        return len(exist)
 
     def __str__(self):
         """Print the board"""
@@ -143,11 +155,24 @@ class Board(object):
         for location in self.cars[car_name].get_occupied_locations():
             self.board[location['x']][location['y']] = '.'
 
+        could_move = False
+        if (new_car.orientation is Orientation.HORIZONTAL) and (not new_car.key_car):
+            if new_car.end_position == {'x': 2, 'y': 5}:
+                could_move = True
+
         for location in new_car.get_occupied_locations():
-            self.board[location['x']][location['y']] = new_car.name
-        self.cars[car_name] = new_car
-        self.action = (self.cars[car_name].name, self.cars[car_name].get_direction(direction), steps)
+            if not could_move:
+                self.board[location['x']][location['y']] = new_car.name
+            else:
+                self.board[location['x']][location['y']] = '.'
+        if could_move:
+            self.remove_car[car_name] = new_car
+            del self.cars[car_name]
+        else:
+            self.cars[car_name] = new_car
+        self.action = (new_car.name, new_car.get_direction(direction), steps)
         self._update_line()
+        self.moved_count += 1
 
     def get_children(self):
         """Get all the children of the current board"""
@@ -169,6 +194,9 @@ class Board(object):
             if car.used_fuel > 0:
                 moved_cars.append(car)
 
+        for name, car in self.remove_car.items():
+            moved_cars.append(car)
+
         return moved_cars
 
     def moved_cars_str(self):
@@ -183,5 +211,7 @@ class Board(object):
         """Get the fuel state of the cars"""
         fuel_state = ''
         for name, car in self.cars.items():
+            fuel_state += f" {name}:{car.fuel - car.used_fuel},"
+        for name, car in self.remove_car.items():
             fuel_state += f" {name}:{car.fuel - car.used_fuel},"
         return fuel_state[:-1]
