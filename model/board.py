@@ -13,11 +13,22 @@ class Board(object):
             self._generate_board()
         self.cars: {str: Car} = {}
         self.key_car = None
-        self.action = None
+        self.action = (0, 0, 0)
+        self.total_used_fuel = 0
 
     def __lt__(self, other):
         """Compare the current board with another board"""
-        return self.line < other.line
+        return self.total_used_fuel < other.total_used_fuel
+
+    def __eq__(self, other):
+        """Check if two boards are equal"""
+        if isinstance(other, Board):
+            return hash(self) == hash(other)
+        return NotImplemented
+
+    def __hash__(self):
+        """Hash the board"""
+        return hash(self.line)
 
     def __copy__(self):
         """Copy the current board"""
@@ -25,6 +36,7 @@ class Board(object):
         new_board.key_car = self.key_car
         new_board.cars = self.cars.copy()
         new_board.board = [row.copy() for row in self.board]
+        new_board.total_used_fuel = self.total_used_fuel
         # print(f"copy result: {id(new_board)==id(self) or id(new_board.cars)==id(self.cars) or id(new_board.board)==id(self.board) or id(new_board.key_car)==id(self.key_car) or id(new_board.line)==id(self.line) or id(new_board.action)==id(self.action)}")
         return new_board
 
@@ -134,7 +146,7 @@ class Board(object):
         """Move the car on the board"""
         # new_car: Car = deepcopy(self.cars[car_name])
         new_car: Car = self.cars[car_name].__copy__(copy_occupied_location=False)
-        for step in range(steps):
+        for _ in range(steps):
             if direction is Direction.FORWARD:
                 new_car.move_forward()
             elif direction is Direction.BACKWARD:
@@ -148,6 +160,7 @@ class Board(object):
         self.cars[car_name] = new_car
         self.action = (self.cars[car_name].name, self.cars[car_name].get_direction(direction), steps)
         self._update_line()
+        self.total_used_fuel += steps
 
     def get_children(self):
         """Get all the children of the current board"""

@@ -1,14 +1,16 @@
 import time
 
 from controller.loader import Loader
-from controller.soler import Solver
+from controller.solver2 import Solver
 from os import path
 
+from model.board import Board
 
 if __name__ == '__main__':
     input_file = path.join(path.dirname(__file__), 'Sample', 'sample-input.txt')
     loader = Loader(input_file)
     for i, game in enumerate(loader.games):
+        game: Board = game
         # if i != 1:
         #     continue
         print("--------------------------------------------------------------------------------")
@@ -21,9 +23,11 @@ if __name__ == '__main__':
         if solver.uniform_cost_search():
             end = time.time()
             print(f"\nRuntime: {round(end - start,2)} seconds")
-            state = solver.solution[1][-1]
+            # state = solver.solution[1][-1]
+            state = solver.solution.state
             print(f"Search path length: {solver.search_length} states")
-            print(f"Solution path length: {len(solver.solution[1]) - 1} moves")
+            # print(f"Solution path length: {len(solver.solution[1])-1} moves")
+            print(f"Solution path length: {len(solver.get_path())} moves")
             short_path, detail_path = solver.get_solution_path()
             print(f"Solution path: {short_path}")
             print(f"\n{detail_path}")
