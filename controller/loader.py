@@ -1,16 +1,32 @@
 from model.board import Board
 from model.car import Car
+import random
 
 
 class Loader(object):
-    def __init__(self, file_name):
+    def __init__(self, file_name, is_sample=True):
         self.file_name = file_name
         self.games: [Board] = []
-        lines = self._load_file()
+        if is_sample:
+            lines = self._load_sample_file()
+        else:
+            lines = self._load_file()
         for line in lines:
             self._load_game(line)
 
     def _load_file(self):
+        """Load the file"""
+        edit_lines = []
+        with open(self.file_name, 'r') as file:
+            lines = file.readlines()
+            for line in lines:
+                if 'x' not in line:
+                    line = line[3:].replace('o', '.')
+                    line, _ = line.split(' ')
+                    edit_lines.append(line)
+        return random.choices(edit_lines, k=50)
+
+    def _load_sample_file(self):
         """Load the file"""
         with open(self.file_name, 'r') as file:
             lines = file.readlines()
