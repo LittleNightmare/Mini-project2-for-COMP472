@@ -12,6 +12,17 @@ class Car(object):
         self.occupied_location = []
         self.orientation = None
 
+    def __copy__(self, copy_occupied_location=True):
+        """Copy the car"""
+        car = Car(self.name, self.fuel, self.key_car)
+        car.start_position = self.start_position.copy()
+        car.end_position = self.end_position.copy()
+        car.used_fuel = self.used_fuel
+        car.orientation = self.orientation
+        if copy_occupied_location:
+            car.occupied_location = self.occupied_location.copy()
+        return car
+
     def get_orientation(self):
         """Get the orientation of the car"""
         if self.orientation is None:

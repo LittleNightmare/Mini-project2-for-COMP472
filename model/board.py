@@ -4,12 +4,13 @@ from copy import deepcopy
 
 
 class Board(object):
-    def __init__(self, line=None, h=6, w=6):
+    def __init__(self, line=None, h=6, w=6, create_init_board=True):
         self.height = h
         self.width = w
         self.board = []
         self.line = line
-        self._generate_board()
+        if create_init_board:
+            self._generate_board()
         self.cars: {str: Car} = {}
         self.key_car = None
         self.action = None
@@ -18,12 +19,21 @@ class Board(object):
         """Compare the current board with another board"""
         return self.line < other.line
 
+    def __copy__(self):
+        """Copy the current board"""
+        new_board = Board(line=(self.line+" "), h=self.height, w=self.width, create_init_board=False)
+        new_board.key_car = self.key_car
+        new_board.cars = self.cars.copy()
+        new_board.board = [row.copy() for row in self.board]
+        # print(f"copy result: {id(new_board)==id(self) or id(new_board.cars)==id(self.cars) or id(new_board.board)==id(self.board) or id(new_board.key_car)==id(self.key_car) or id(new_board.line)==id(self.line) or id(new_board.action)==id(self.action)}")
+        return new_board
+
     def _generate_board(self):
         """Generate the board"""
         for i in range(self.height):
             self.board.append([])
             for j in range(self.width):
-                self.board[i].append(0)
+                self.board[i].append('.')
 
     def add_car(self, car):
         """Add a car to the board"""
@@ -45,13 +55,13 @@ class Board(object):
 
     def _update_line(self):
         """Convert the current board to a line"""
-        line = ''
-        for i in range(self.height):
-            for j in range(self.width):
-                if self.board[i][j] != 0:
-                    line += self.board[i][j]
-                else:
-                    line += '.'
+        line = ''.join(''.join(map(str, row)) for row in self.board)
+        # for i in range(self.height):
+        #     for j in range(self.width):
+        #         if self.board[i][j] != 0:
+        #             line += self.board[i][j]
+        #         else:
+        #             line += '.'
         self.line = line
 
     def get_line(self):
@@ -60,14 +70,8 @@ class Board(object):
 
     def __str__(self):
         """Print the board"""
-        string = ''
-        for i in range(self.height):
-            for j in range(self.width):
-                if self.board[i][j] != 0:
-                    string += self.board[i][j]
-                else:
-                    string += "."
-            string += '\n'
+        string = '\n'.join(''.join(map(str, row)) for row in self.board)
+
         return string
 
     def _is_car_movable_forward(self, car, steps):
@@ -76,14 +80,14 @@ class Board(object):
         if orientation is Orientation.VERTICAL:
             if car.start_position['x'] - steps >= 0:
                 for i in range(1, steps + 1):
-                    if self.board[car.start_position['x'] - i][car.start_position['y']] != 0:
+                    if self.board[car.start_position['x'] - i][car.start_position['y']] != '.':
                         return False
                 return True
             return False
         elif orientation is Orientation.HORIZONTAL:
             if car.end_position['y'] + steps < self.width:
                 for i in range(1, steps + 1):
-                    if self.board[car.end_position['x']][car.end_position['y'] + i] != 0:
+                    if self.board[car.end_position['x']][car.end_position['y'] + i] != '.':
                         return False
                 return True
             return False
@@ -94,36 +98,42 @@ class Board(object):
         if orientation is Orientation.VERTICAL:
             if car.end_position['x'] + steps < self.height:
                 for i in range(1, steps + 1):
-                    if self.board[car.end_position['x'] + i][car.end_position['y']] != 0:
+                    if self.board[car.end_position['x'] + i][car.end_position['y']] != '.':
                         return False
                 return True
             return False
         elif orientation is Orientation.HORIZONTAL:
             if car.start_position['y'] - steps >= 0:
                 for i in range(1, steps + 1):
-                    if self.board[car.start_position['x']][car.start_position['y'] - i] != 0:
+                    if self.board[car.start_position['x']][car.start_position['y'] - i] != '.':
                         return False
                 return True
             return False
 
     def is_game_win(self):
         """Check if the game is won"""
-        locations = self.cars[self.key_car].get_occupied_locations()
-        if {'x': 2, 'y': 5} in locations:
+        if self.board[2][5] == self.key_car:
             return True
         return False
 
     def get_child(self, car_name, direction, steps=1):
         """Get child of the current board"""
         if self.is_car_movable(car_name, direction, steps):
-            new_board = deepcopy(self)
+            # new_board = deepcopy(self)
+            # new_board = Board(line=self.line, h=self.height, w=self.width, create_init_board=False)
+            # new_board.key_car = self.key_car
+            # new_board.cars = self.cars.copy()
+            # new_board.board = self.board.copy()
+            new_board = self.__copy__()
+
             new_board.move_car(car_name, direction, steps)
             return new_board
         return None
 
     def move_car(self, car_name, direction, steps):
         """Move the car on the board"""
-        new_car: Car = deepcopy(self.cars[car_name])
+        # new_car: Car = deepcopy(self.cars[car_name])
+        new_car: Car = self.cars[car_name].__copy__(copy_occupied_location=False)
         for step in range(steps):
             if direction is Direction.FORWARD:
                 new_car.move_forward()
@@ -131,7 +141,7 @@ class Board(object):
                 new_car.move_backward()
 
         for location in self.cars[car_name].get_occupied_locations():
-            self.board[location['x']][location['y']] = 0
+            self.board[location['x']][location['y']] = '.'
 
         for location in new_car.get_occupied_locations():
             self.board[location['x']][location['y']] = new_car.name

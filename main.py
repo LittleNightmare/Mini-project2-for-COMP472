@@ -8,7 +8,9 @@ from os import path
 if __name__ == '__main__':
     input_file = path.join(path.dirname(__file__), 'Sample', 'sample-input.txt')
     loader = Loader(input_file)
-    for game in loader.games:
+    for i, game in enumerate(loader.games):
+        # if i != 1:
+        #     continue
         print("--------------------------------------------------------------------------------")
         solver = Solver(game)
         print("\nInitial board configuration: " + game.get_line())

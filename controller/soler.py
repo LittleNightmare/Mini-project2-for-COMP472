@@ -16,7 +16,6 @@ class Solver(object):
         """Uniform cost search"""
         # create a priority queue
         queue = PriorityQueue()
-        queue_lines = []
         # create a set to store visited nodes
         visited = []
         # create a node with the initial state
@@ -39,11 +38,12 @@ class Solver(object):
             state: Board = node[1][-1]
             log = f"{f} {g} {h} {state.get_line()}{state.moved_cars_str()}"
             # print(log)
-            self.logs += log+"\n"
+            self.logs += log + "\n"
             # check if the state is the goal state
             if state.is_game_win():
                 self.solution = node
                 self.status = Status.SOLVED
+                self.search_length = len(visited)+len(queue.queue)
                 return True
             # mark the state as visited
             visited.append(state.get_line())
@@ -67,10 +67,11 @@ class Solver(object):
                         index = i
                         break
 
+                # if not in_queue and len(visited.intersection(child_line)) == 0:
                 if not in_queue and child_line not in visited:
                     # push the node into the queue
                     queue.put(new_node)
-                    self.search_length += 1
+                    # self.search_length += 1
                 elif in_queue:
                     # get the node from the queue
                     old_node = queue.queue[index]
@@ -95,7 +96,7 @@ class Solver(object):
                 short_path += f" {name} {direction.value} {steps};"
                 detail_path += f"{name} {direction.value.rjust(5)} {steps}  " \
                                f"     "
-                detail_path += f"{state.cars[name].fuel-state.cars[name].used_fuel} "\
+                detail_path += f"{state.cars[name].fuel - state.cars[name].used_fuel} " \
                                f"{state.get_line()} {state.moved_cars_str()}\n"
             return short_path[:-1], detail_path
         return None
