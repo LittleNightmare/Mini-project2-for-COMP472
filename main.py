@@ -1,6 +1,8 @@
 import time
 
 from controller.loader import Loader
+from controller.output import Output
+
 from controller.UCS import UCS
 from controller.GBFS import GBFS
 from os import path
@@ -8,48 +10,26 @@ from os import path
 INPUT_FILE = path.join(path.dirname(__file__), 'rush.txt')
 INPUT_FILE_SAMPLE = path.join(path.dirname(__file__), 'Sample', 'sample-input.txt')
 INPUT_FILE_EXAMPLE = path.join(path.dirname(__file__), 'Sample', 'example-input.txt')
+OUTPUT_PATH = path.join(path.dirname(__file__), 'output')
 
 if __name__ == '__main__':
     input_file = INPUT_FILE_SAMPLE
     loader = Loader(input_file, is_sample=True)
+    used_class = [UCS, GBFS]
     for i, game in enumerate(loader.games):
         # if i != 1:
         #     continue
-        print("--------------------------------------------------------------------------------")
-        solver = GBFS(game)
-        print("\nInitial board configuration: " + game.get_line())
-        print(f"!{game.moved_cars_str()}")
-        print(f"{game}")
-        print("Car fuel available:"+game.get_fuel_state())
-        start = time.time()
-        if solver.search():
-            end = time.time()
-            print(f"\nRuntime: {round(end - start,2)} seconds")
-            state = solver.solution[1][-1]
-            print(f"Search path length: {solver.search_length} states")
-            print(f"Solution path length: {len(solver.solution[1]) - 1} moves")
-            short_path, detail_path = solver.get_solution_path()
-            print(f"Solution path: {short_path}")
-            print(f"\n{detail_path}")
-            print(f"\n!{state.moved_cars_str()}")
-            print(state)
-        else:
-            end = time.time()
-            print("No solution found")
-            print(f"\nRuntime: {round(end - start,2)} seconds")
-        # break
+        for algorithm in used_class:
+            if algorithm == UCS:
+                solvers = [algorithm(game)]
+            else:
+                solvers = [algorithm(game, h) for h in range(1, 5)]
+            for solver in solvers:
+                start = time.time()
+                solver.search()
+                end = time.time()
+                output = Output(game, solver, end - start, OUTPUT_PATH, i+1)
+                print(f'Game {i+1} {solver.__class__.__name__} {"h"+str(solver.heuristic) if hasattr(solver,"heuristic") else ""} {round(end-start, 2)} seconds {solver.status.value}')
+                output.write_to_file()
 
-    # game = loader.games[1]
-    # solver = Solver(game)
-    # start_time = time.time()
-    # if solver.uniform_cost_search():
-    #     end_time = time.time()
-    #     state = solver.solution[1][-1]
-    #     print(solver.logs)
-    #     print(state)
-    #     print(f"Time: {end_time - start_time} seconds")
-    # else:
-    #     end_time = datetime.datetime.now()
-    #     print(f"Time: {end_time - start_time} seconds")
-
-
+    # break

@@ -55,7 +55,7 @@ class Loader(object):
                     else:
                         cars[char].end_position = {'x': i, 'y': j}
 
-            game = Board(line=line)
+            game = Board()
             if len(line.split(' ')) > 1:
                 fuels = line.replace('\n', '').split(' ')[1:]
                 # print(line + ":\n" + str(fuels))
@@ -68,4 +68,5 @@ class Loader(object):
                     cars[letter].fuel = amount
             for car in cars.values():
                 game.add_car(car)
+            game._update_line()
             self.games.append(game)
