@@ -5,6 +5,7 @@ from controller.output import Output
 
 from controller.UCS import UCS
 from controller.GBFS import GBFS
+from controller.A import A
 from os import path
 
 INPUT_FILE = path.join(path.dirname(__file__), 'rush.txt')
@@ -15,7 +16,7 @@ OUTPUT_PATH = path.join(path.dirname(__file__), 'output')
 if __name__ == '__main__':
     input_file = INPUT_FILE_SAMPLE
     loader = Loader(input_file, is_sample=True)
-    used_class = [UCS, GBFS]
+    used_class = [UCS, GBFS, A]
     for i, game in enumerate(loader.games):
         # if i != 1:
         #     continue
