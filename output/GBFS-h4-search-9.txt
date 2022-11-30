@@ -1,0 +1,16 @@
+4.8 0 4.8 ...EBB...E.GAA.F.G...FCC.DDD........
+4.8 0 4.8 ...EBB...E.G.AAF.G...FCC.DDD........ A99
+4.8 0 4.8 ...EBB...E.GAA.F.G...FCC...DDD...... D98
+4.8 0 4.8 ...EBB...E.GAA.F.G...FCCDDD......... D99
+2.4 0 2.4 ...EBB...E.GAA...G...FCCDDDF........ F99 D99
+2.4 0 2.4 ...EBB...E.GAA...G....CCDDDF.....F.. F98 D99
+2.4 0 2.4 ...EBB...E.G.AA..G...FCCDDDF........ A99 F99 D99
+2.4 0 2.4 ...EBB...E.G..AA.G....CCDDDF.....F.. A98 F98 D99
+2.4 0 2.4 ...EBB...E.GAA...G...CC.DDDF.....F.. F98 C99 D99
+0.0 0 0.0 ...EBB...E..AA.......CCGDDDF.G...F.. G98 F98 C99 D99
+0.0 0 0.0 ...EBB...E..AA.......CC.DDDF.G...F.G G97 F98 C99 D99
+0.0 0 0.0 ...EBB...E...AA......CCGDDDF.G...F.. G98 A99 F98 C99 D99
+0.0 0 0.0 ...EBB...E.....AA....CCGDDDF.G...F.. G98 A97 F98 C99 D99
+0.0 0 0.0 ...EBB...E..AA......CC.GDDDF.G...F.. G98 F98 C98 D99
+0.0 0 0.0 ...EBB...E..AA.....CC..GDDDF.G...F.. G98 F98 C97 D99
+0.0 0 0.0 ...EBB...E......AA...CCGDDDF.G...F.. G98 A96 F98 C99 D99

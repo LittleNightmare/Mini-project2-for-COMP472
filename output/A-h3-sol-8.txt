@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+
+Initial board configuration: ...JBB..IJ.K..IAAKCCCDDKHEEFFFH..GGG
+
+!
+...JBB
+..IJ.K
+..IAAK
+CCCDDK
+HEEFFF
+H..GGG
+
+Car fuel available:  J:100, B:100, I:100, K:100, A:100, C:100, D:100, H:100, E:100, F:100, G:100
+
+Runtime: 0.35 seconds
+Search path length: 516 states
+Solution path length: 19 moves
+Solution path:  I Up 1; A Left 3; I Down 1; J Down 1; B Left 4; J Up 1; I Up 1; K Up 1; D Right 1; C Right 1; A Right 3; H Up 3; E Left 1; F Left 1; C Left 1; D Left 1; G Left 3; K Down 3; A Right 1
+
+I    Up 1       99 ..IJBB..IJ.K...AAKCCCDDKHEEFFFH..GGG  I99
+A  Left 3       97 ..IJBB..IJ.KAA...KCCCDDKHEEFFFH..GGG  I99 A97
+I  Down 1       98 ...JBB..IJ.KAAI..KCCCDDKHEEFFFH..GGG  I98 A97
+J  Down 1       99 ....BB..IJ.KAAIJ.KCCCDDKHEEFFFH..GGG  J99 I98 A97
+B  Left 4       96 BB......IJ.KAAIJ.KCCCDDKHEEFFFH..GGG  J99 B96 I98 A97
+J    Up 1       98 BB.J....IJ.KAAI..KCCCDDKHEEFFFH..GGG  J98 B96 I98 A97
+I    Up 1       97 BBIJ....IJ.KAA...KCCCDDKHEEFFFH..GGG  J98 B96 I97 A97
+K    Up 1       99 BBIJ.K..IJ.KAA...KCCCDD.HEEFFFH..GGG  J98 B96 I97 K99 A97
+D Right 1       99 BBIJ.K..IJ.KAA...KCCC.DDHEEFFFH..GGG  J98 B96 I97 K99 A97 D99
+C Right 1       99 BBIJ.K..IJ.KAA...K.CCCDDHEEFFFH..GGG  J98 B96 I97 K99 A97 C99 D99
+A Right 3       94 BBIJ.K..IJ.K...AAK.CCCDDHEEFFFH..GGG  J98 B96 I97 K99 A94 C99 D99
+H    Up 3       97 BBIJ.KH.IJ.KH..AAK.CCCDD.EEFFF...GGG  J98 B96 I97 K99 A94 C99 D99 H97
+E  Left 1       99 BBIJ.KH.IJ.KH..AAK.CCCDDEE.FFF...GGG  J98 B96 I97 K99 A94 C99 D99 H97 E99
+F  Left 1       99 BBIJ.KH.IJ.KH..AAK.CCCDDEEFFF....GGG  J98 B96 I97 K99 A94 C99 D99 H97 E99 F99
+C  Left 1       98 BBIJ.KH.IJ.KH..AAKCCC.DDEEFFF....GGG  J98 B96 I97 K99 A94 C98 D99 H97 E99 F99
+D  Left 1       98 BBIJ.KH.IJ.KH..AAKCCCDD.EEFFF....GGG  J98 B96 I97 K99 A94 C98 D98 H97 E99 F99
+G  Left 3       97 BBIJ.KH.IJ.KH..AAKCCCDD.EEFFF.GGG...  J98 B96 I97 K99 A94 C98 D98 H97 E99 F99 G97
+K  Down 3       96 BBIJ..H.IJ..H..AA.CCCDDKEEFFFKGGG..K  J98 B96 I97 K96 A94 C98 D98 H97 E99 F99 G97
+A Right 1       93 BBIJ..H.IJ..H...AACCCDDKEEFFFKGGG..K  J98 B96 I97 K96 A93 C98 D98 H97 E99 F99 G97
+
+! J98 B96 I97 K96 A93 C98 D98 H97 E99 F99 G97
+BBIJ..
+H.IJ..
+H...AA
+CCCDDK
+EEFFFK
+GGG..K
+
+--------------------------------------------------------------------------------

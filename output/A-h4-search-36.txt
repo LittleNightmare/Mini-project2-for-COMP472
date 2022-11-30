@@ -1,0 +1,25 @@
+4.8 0 4.8 .BBG...CCG..AAEG....E.....F.....FDD.
+5.8 1 4.8 BB.G...CCG..AAEG....E.....F.....FDD. B99
+5.8 1 4.8 .BB....CC...AAEG....EG....FG....FDD. G98
+5.8 1 4.8 .BBG...CCG..AAEG....E.....F.....F.DD D99
+4.4 2 2.4 .BB....CC...AAE.....EG....FG....FGDD G97 D99
+5.4 3 2.4 ..BB...CC...AAE.....EG....FG....FGDD B99 G97 D99
+5.4 3 2.4 .BB...CC....AAE.....EG....FG....FGDD G97 C99 D99
+5.4 3 2.4 ...BB..CC...AAE.....EG....FG....FGDD B98 G97 D99
+5.4 3 2.4 BB.....CC...AAE.....EG....FG....FGDD B99 G97 D99
+5.4 3 2.4 .BB......CC.AAE.....EG....FG....FGDD G97 C98 D99
+5.4 3 2.4 .BB.......CCAAE.....EG....FG....FGDD G97 C97 D99
+5.4 3 2.4 .BB.....CC..AAE.....EG....FG....FGDD G97 C99 D99
+5.4 3 2.4 ....BB.CC...AAE.....EG....FG....FGDD B97 G97 D99
+5.8 1 4.8 .BB....CCG..AAEG....EG....F.....FDD. G99
+5.8 1 4.8 .BBG..CC.G..AAEG....E.....F.....FDD. C99
+6.4 4 2.4 ..BB....CC..AAE.....EG....FG....FGDD B99 G97 C99 D99
+6.4 4 2.4 ..BB......CCAAE.....EG....FG....FGDD B99 G97 C97 D99
+6.4 4 2.4 ....BBCC....AAE.....EG....FG....FGDD B97 G97 C99 D99
+5.0 5 0.0 ..E.BBCCE...AA.......G....FG....FGDD B97 G97 C99 E98 D99
+6.0 6 0.0 ..EBB.CCE...AA.......G....FG....FGDD B96 G97 C99 E98 D99
+6.0 6 0.0 ..E.BBCCE....AA......G....FG....FGDD B97 G97 C99 A99 E98 D99
+6.0 6 0.0 ..E.BBCCE.....AA.....G....FG....FGDD B97 G97 C99 A98 E98 D99
+6.0 6 0.0 ..E.BBCCE......AA....G....FG....FGDD B97 G97 C99 A97 E98 D99
+6.0 6 0.0 ..E.BBCCE...AA......FG....FG.....GDD B97 G97 C99 E98 F99 D99
+6.0 6 0.0 ..E.BBCCE.......AA...G....FG....FGDD B97 G97 C99 A96 E98 D99

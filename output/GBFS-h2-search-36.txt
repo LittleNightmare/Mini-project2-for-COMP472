@@ -1,0 +1,22 @@
+2 0 2 .BBG...CCG..AAEG....E.....F.....FDD.
+2 0 2 BB.G...CCG..AAEG....E.....F.....FDD. B99
+2 0 2 .BB....CC...AAEG....EG....FG....FDD. G98
+2 0 2 .BBG...CCG..AAEG....E.....F.....F.DD D99
+1 0 1 .BB....CC...AAE.....EG....FG....FGDD G97 D99
+1 0 1 ..BB...CC...AAE.....EG....FG....FGDD B99 G97 D99
+1 0 1 .BB...CC....AAE.....EG....FG....FGDD G97 C99 D99
+1 0 1 ...BB..CC...AAE.....EG....FG....FGDD B98 G97 D99
+1 0 1 BB.....CC...AAE.....EG....FG....FGDD B99 G97 D99
+1 0 1 .BB......CC.AAE.....EG....FG....FGDD G97 C98 D99
+1 0 1 .BB.......CCAAE.....EG....FG....FGDD G97 C97 D99
+1 0 1 .BB.....CC..AAE.....EG....FG....FGDD G97 C99 D99
+1 0 1 ....BB.CC...AAE.....EG....FG....FGDD B97 G97 D99
+1 0 1 ..BB....CC..AAE.....EG....FG....FGDD B99 G97 C99 D99
+1 0 1 ..BB......CCAAE.....EG....FG....FGDD B99 G97 C97 D99
+1 0 1 ....BBCC....AAE.....EG....FG....FGDD B97 G97 C99 D99
+0 0 0 ..E.BBCCE...AA.......G....FG....FGDD B97 G97 C99 E98 D99
+0 0 0 ..EBB.CCE...AA.......G....FG....FGDD B96 G97 C99 E98 D99
+0 0 0 ..E.BBCCE....AA......G....FG....FGDD B97 G97 C99 A99 E98 D99
+0 0 0 ..E.BBCCE.....AA.....G....FG....FGDD B97 G97 C99 A98 E98 D99
+0 0 0 ..E.BBCCE......AA....G....FG....FGDD B97 G97 C99 A97 E98 D99
+0 0 0 ..E.BBCCE.......AA...G....FG....FGDD B97 G97 C99 A96 E98 D99

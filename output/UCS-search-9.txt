@@ -1,0 +1,79 @@
+0 0 0 ...EBB...E.GAA.F.G...FCC.DDD........
+1 1 0 ...EBB...E.G.AAF.G...FCC.DDD........ A99
+1 1 0 ...EBB...E.GAA.F.G...FCC...DDD...... D98
+1 1 0 ...EBB...E.GAA.F.G...FCCDDD......... D99
+1 1 0 ...EBB...E.GAA.F.G...FCC..DDD....... D99
+2 2 0 ...EBB...E.G.AAF.G...FCCDDD......... A99 D99
+2 2 0 ...EBB...E.GAA...G....CCDDDF.....F.. F98 D99
+2 2 0 ...EBB...E.GAA...G...FCCDDDF........ F99 D99
+2 2 0 ...EBB...E.G.AAF.G...FCC..DDD....... A99 D99
+2 2 0 ...EBB...E.G.AAF.G...FCC...DDD...... A99 D98
+3 3 0 ...EBB...E.G.AA..G....CCDDDF.....F.. A99 F98 D99
+3 3 0 ....BB.....GAA.E.G...ECCDDDF.....F.. E98 F98 D99
+3 3 0 ...EBB...E.G..AA.G...FCCDDDF........ A98 F99 D99
+3 3 0 ....BB...E.GAA.E.G...FCCDDDF........ E99 F99 D99
+3 3 0 ....BB...E.GAA.E.G....CCDDDF.....F.. E99 F98 D99
+3 3 0 ...EBB...E.GAA...G.CC...DDDF.....F.. F98 C97 D99
+3 3 0 ...EBB...E.G.AA..G...FCCDDDF........ A99 F99 D99
+3 3 0 ...EBB...E.GAA...G..CC..DDDF.....F.. F98 C98 D99
+3 3 0 ...EBB...E.G...AAG...FCCDDDF........ A97 F99 D99
+3 3 0 ...EBB...E.GAA...G...CC.DDDF.....F.. F98 C99 D99
+3 3 0 ...EBB...E.G...AAG....CCDDDF.....F.. A97 F98 D99
+3 3 0 ...EBB...E.GAA...GCC....DDDF.....F.. F98 C96 D99
+3 3 0 ...EBB...E.G..AA.G....CCDDDF.....F.. A98 F98 D99
+4 4 0 ...EBB...E.G.AA..G...CC.DDDF.....F.. A99 F98 C99 D99
+4 4 0 ...EBB...E.G.AA..GCC....DDDF.....F.. A99 F98 C96 D99
+4 4 0 ....BB...E.G.AAE.G...FCCDDDF........ E99 A99 F99 D99
+4 4 0 ....BB.....GAA.E.G.CCE..DDDF.....F.. E98 F98 C97 D99
+4 4 0 ...EBB...E.GAA.F.GCC.F..DDD......... F96 C96 D99
+4 4 0 ...EBB...E.GAA...GCC.F..DDDF........ F97 C96 D99
+4 4 0 ....BB...E.GAA.E.G.CC...DDDF.....F.. E99 F98 C97 D99
+4 4 0 ....BB.....G.AAE.G...ECCDDDF.....F.. E98 A99 F98 D99
+4 4 0 ....BB...E.GAA.E.G..CC..DDDF.....F.. E99 F98 C98 D99
+4 4 0 ....BB...E.GAA.E.G...CC.DDDF.....F.. E99 F98 C99 D99
+4 4 0 ....BB...E.G.AAE.G....CCDDDF.....F.. E99 A99 F98 D99
+4 4 0 .BB........GAA.E.G...ECCDDDF.....F.. E98 B97 F98 D99
+4 4 0 BB.......E.GAA.E.G....CCDDDF.....F.. E99 B96 F98 D99
+4 4 0 .BB......E.GAA.E.G....CCDDDF.....F.. E99 B97 F98 D99
+4 4 0 BB.........GAA.E.G...ECCDDDF.....F.. E98 B96 F98 D99
+4 4 0 ..BB.....E.GAA.E.G....CCDDDF.....F.. E99 B98 F98 D99
+4 4 0 ...BB....E.GAA.E.G....CCDDDF.....F.. E99 B99 F98 D99
+4 4 0 ...EBB...E.G..AA.GCC....DDDF.....F.. A98 F98 C96 D99
+4 4 0 BB.......E.GAA.E.G...FCCDDDF........ E99 B96 F99 D99
+4 4 0 ....BB...E.GAA.E.GCC....DDDF.....F.. E99 F98 C96 D99
+4 4 0 ...EBB...E.GAA...G.CCF..DDDF........ F97 C97 D99
+4 4 0 ...EBB...E.G...AAGCC....DDDF.....F.. A97 F98 C96 D99
+4 4 0 ...EBB...E..AA....CC....DDDF.G...F.G G97 F98 C96 D99
+4 4 0 ...EBB...E..AA....CC...GDDDF.G...F.. G98 F98 C96 D99
+4 4 0 .BB......E.GAA.E.G...FCCDDDF........ E99 B97 F99 D99
+4 4 0 ...EBB...E..AA...GCC...GDDDF.....F.. G99 F98 C96 D99
+4 4 0 ....BB.....GAA.E.GCC.E..DDDF.....F.. E98 F98 C96 D99
+4 4 0 ..BB.....E.GAA.E.G...FCCDDDF........ E99 B98 F99 D99
+4 4 0 ...EBB...E.GAA.F.G.CCF..DDD......... F96 C97 D99
+4 4 0 ...EBB...E.G..AA.G...CC.DDDF.....F.. A98 F98 C99 D99
+4 4 0 ...EBB...E..AA.......CC.DDDF.G...F.G G97 F98 C99 D99
+4 4 0 ...BB....E.GAA.E.G...FCCDDDF........ E99 B99 F99 D99
+4 4 0 ...EBB...E..AA.......CCGDDDF.G...F.. G98 F98 C99 D99
+4 4 0 ...EBB...E..AA...G...CCGDDDF.....F.. G99 F98 C99 D99
+4 4 0 ..BB.......GAA.E.G...ECCDDDF.....F.. E98 B98 F98 D99
+4 4 0 ...EBB...E..AA......CC..DDDF.G...F.G G97 F98 C98 D99
+4 4 0 ...EBB...E.G...AAG..CC..DDDF.....F.. A97 F98 C98 D99
+4 4 0 ...EBB...E.G...AAG...CC.DDDF.....F.. A97 F98 C99 D99
+4 4 0 ...EBB...E..AA......CC.GDDDF.G...F.. G98 F98 C98 D99
+4 4 0 ...BB......GAA.E.G...ECCDDDF.....F.. E98 B99 F98 D99
+4 4 0 ...EBB...E..AA...G..CC.GDDDF.....F.. G99 F98 C98 D99
+4 4 0 ...EBB...E.G...AAG.CC...DDDF.....F.. A97 F98 C97 D99
+4 4 0 ...EBB...E.G.AA..G.CC...DDDF.....F.. A99 F98 C97 D99
+4 4 0 ...EBB...E.G..AA.G.CC...DDDF.....F.. A98 F98 C97 D99
+4 4 0 ...EBB...E.G..AA.G..CC..DDDF.....F.. A98 F98 C98 D99
+4 4 0 ...EBB...E..AA.....CC...DDDF.G...F.G G97 F98 C97 D99
+4 4 0 ...EBB...E.G.AA..G..CC..DDDF.....F.. A99 F98 C98 D99
+4 4 0 ...EBB...E..AA.....CC..GDDDF.G...F.. G98 F98 C97 D99
+4 4 0 ...EBB...E..AA...G.CC..GDDDF.....F.. G99 F98 C97 D99
+5 5 0 ...EBB...E...AA......CC.DDDF.G...F.G G97 A99 F98 C99 D99
+5 5 0 BB.......E.G.AAE.G...FCCDDDF........ E99 B96 A99 F99 D99
+5 5 0 .BB........GAA.E.G.CCE..DDDF.....F.. E98 B97 F98 C97 D99
+5 5 0 ....BB...E.GAA.E.G.CCF..DDDF........ E99 F97 C97 D99
+5 5 0 ..BB.....E.GAA.E.GCC....DDDF.....F.. E99 B98 F98 C96 D99
+5 5 0 ...BB......GAA.E.GCC.E..DDDF.....F.. E98 B99 F98 C96 D99
+5 5 0 ...EBB...E......AA.CC..GDDDF.G...F.. G98 A96 F98 C97 D99

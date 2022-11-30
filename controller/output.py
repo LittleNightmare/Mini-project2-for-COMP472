@@ -15,6 +15,18 @@ class Output(object):
             makedirs(output_path)
         self.num = num
 
+    def generate_short_info(self):
+        algorithm = self.solver.__class__.__name__
+        h = -1
+        if algorithm != "UCS":
+            self.solver: algorithm = self.solver
+            h = self.solver.heuristic
+        if self.solver.status is Status.FAILURE:
+            sol_path = "N/A"
+        sol_path = self.solver.get_path()
+        string = f"{self.num},{algorithm},{'h' + str(h) if h != -1 else 'NA'},{len(sol_path)},{self.solver.search_length},{round(self.time_taken, 2)}\n"
+        return string
+
     def generate_solution_output(self):
         string = "--------------------------------------------------------------------------------\n"
         string += "\nInitial board configuration: " + self.init_game.get_line() + "\n"
@@ -23,9 +35,9 @@ class Output(object):
         string += f"\nCar fuel available: {self.init_game.get_fuel_state()}\n"
         if self.solver.status is Status.FAILURE:
             string += f"\nNo solution found"
-            string += f"\nRuntime: {round(self.time_taken,2)} seconds"
+            string += f"\nRuntime: {round(self.time_taken, 2)} seconds"
         else:
-            string += f"\nRuntime: {round(self.time_taken,2)} seconds"
+            string += f"\nRuntime: {round(self.time_taken, 2)} seconds"
             sol_path = self.solver.get_path()
             state = sol_path[-1]
             string += f"\nSearch path length: {self.solver.search_length} states"
@@ -34,7 +46,7 @@ class Output(object):
             string += f"\nSolution path: {short_path}\n"
             string += f"\n{detail_path}"
             string += f"\n!{state.moved_cars_str()}\n"
-            string += str(state)+"\n"
+            string += str(state) + "\n"
         string += f"\n--------------------------------------------------------------------------------"
         return string
 
@@ -60,3 +72,6 @@ class Output(object):
 
         with open(path.join(self.output_path, search_name), 'w') as f:
             f.write(self.solver.logs)
+
+        with open(path.join(self.output_path, "short_info.csv"), 'a') as f:
+            f.write(self.generate_short_info())

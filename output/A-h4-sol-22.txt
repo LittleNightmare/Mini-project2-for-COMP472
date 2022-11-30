@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+
+Initial board configuration: DBBBG.D..FGIDAAFHI.E..H..ECCC..E....
+
+!
+DBBBG.
+D..FGI
+DAAFHI
+.E..H.
+.ECCC.
+.E....
+
+Car fuel available:  D:100, B:100, G:100, F:100, I:100, A:100, H:100, E:100, C:100
+
+Runtime: 0.07 seconds
+Search path length: 123 states
+Solution path length: 9 moves
+Solution path:  I Down 2; D Down 3; B Left 1; F Up 1; A Right 1; E Up 2; C Left 1; H Down 1; A Right 2
+
+I  Down 2       98 DBBBG.D..FG.DAAFH..E..HI.ECCCI.E....  I98
+D  Down 3       97 .BBBG....FG..AAFH.DE..HIDECCCIDE....  D97 I98
+B  Left 1       99 BBB.G....FG..AAFH.DE..HIDECCCIDE....  D97 B99 I98
+F    Up 1       99 BBBFG....FG..AA.H.DE..HIDECCCIDE....  D97 B99 F99 I98
+A Right 1       99 BBBFG....FG...AAH.DE..HIDECCCIDE....  D97 B99 F99 I98 A99
+E    Up 2       98 BBBFG..E.FG..EAAH.DE..HID.CCCID.....  D97 B99 F99 I98 A99 E98
+C  Left 1       99 BBBFG..E.FG..EAAH.DE..HIDCCC.ID.....  D97 B99 F99 I98 A99 E98 C99
+H  Down 1       99 BBBFG..E.FG..EAA..DE..HIDCCCHID.....  D97 B99 F99 I98 A99 H99 E98 C99
+A Right 2       97 BBBFG..E.FG..E..AADE..HIDCCCHID.....  D97 B99 F99 I98 A97 H99 E98 C99
+
+! D97 B99 F99 I98 A97 H99 E98 C99
+BBBFG.
+.E.FG.
+.E..AA
+DE..HI
+DCCCHI
+D.....
+
+--------------------------------------------------------------------------------

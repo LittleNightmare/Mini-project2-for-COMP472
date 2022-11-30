@@ -12,14 +12,18 @@ INPUT_FILE = path.join(path.dirname(__file__), 'rush.txt')
 INPUT_FILE_SAMPLE = path.join(path.dirname(__file__), 'Sample', 'sample-input.txt')
 INPUT_FILE_EXAMPLE = path.join(path.dirname(__file__), 'Sample', 'example-input.txt')
 OUTPUT_PATH = path.join(path.dirname(__file__), 'output')
+USED_PUZZLE = path.join(OUTPUT_PATH, 'used_puzzle.txt')
 
 if __name__ == '__main__':
-    input_file = INPUT_FILE_SAMPLE
-    loader = Loader(input_file, is_sample=True)
+    input_file = INPUT_FILE
+    is_sample = False
+    loader = Loader(input_file, is_sample=is_sample)
     used_class = [UCS, GBFS, A]
+    with open(USED_PUZZLE, 'w+') as f:
+        f.write("")
     for i, game in enumerate(loader.games):
-        # if i != 1:
-        #     continue
+        with open(USED_PUZZLE, 'a') as f:
+            f.write(game.get_line() + "\n")
         for algorithm in used_class:
             if algorithm == UCS:
                 solvers = [algorithm(game)]
