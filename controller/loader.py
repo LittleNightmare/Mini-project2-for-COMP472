@@ -1,6 +1,7 @@
+import random
+
 from model.board import Board
 from model.car import Car
-import random
 
 
 class Loader(object):
@@ -39,7 +40,7 @@ class Loader(object):
         if line[0] != '#' and len(line) > 1:
             n = 6
             content = line.split(' ')[0]
-            content = [content[i:i+n] for i in range(0, len(content), n)]
+            content = [content[i:i + n] for i in range(0, len(content), n)]
             for i, chars in enumerate(content):
                 for j, char in enumerate(chars):
                     is_main_car = False

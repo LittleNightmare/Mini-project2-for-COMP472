@@ -1,8 +1,5 @@
-from enums import Direction, Orientation, Status
+from enums import Status
 from model.board import Board
-from model.car import Car
-
-from queue import PriorityQueue
 
 
 class Solver(object):
