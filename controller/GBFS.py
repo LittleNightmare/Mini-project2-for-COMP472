@@ -56,6 +56,7 @@ class GBFS(Solver):
                 elif in_queue and new_cost < queue.queue[index][0]:
                     queue.queue.pop(index)
                     queue.put(new_node)
+        self.search_length = len(visited)
         self.status = Status.FAILURE
         return False
 

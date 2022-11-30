@@ -22,9 +22,10 @@ class Output(object):
             self.solver: algorithm = self.solver
             h = self.solver.heuristic
         if self.solver.status is Status.FAILURE:
-            sol_path = "N/A"
-        sol_path = self.solver.get_path()
-        string = f"{self.num},{algorithm},{'h' + str(h) if h != -1 else 'NA'},{len(sol_path)},{self.solver.search_length},{round(self.time_taken, 2)}\n"
+            sol_path_len = "NA"
+        else:
+            sol_path_len = len(self.solver.get_path())
+        string = f"{self.num},{algorithm},{'h' + str(h) if h != -1 else 'NA'},{sol_path_len},{self.solver.search_length},{round(self.time_taken, 2)}\n "
         return string
 
     def generate_solution_output(self):

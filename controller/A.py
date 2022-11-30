@@ -11,7 +11,7 @@ class A(Solver):
         self.heuristic = heuristic
 
     def search(self):
-        """Greedy Best First Search"""
+        """A*/A Search"""
         queue = PriorityQueue()
         visited = []
         f, g, h = 0, 0, self.board.get_h(self.heuristic)
@@ -36,7 +36,7 @@ class A(Solver):
             children: [Board] = state.get_children()
             for child in children:
                 path = node[1].copy()
-                new_cost = child.get_h(self.heuristic)+len(path)-1
+                new_cost = child.get_h(self.heuristic) + len(path) - 1
                 child_line = child.get_line()
                 # path.append(child)
                 new_node = (new_cost, [child] + path)
@@ -57,6 +57,7 @@ class A(Solver):
                 elif in_queue and new_cost < queue.queue[index][0]:
                     queue.queue.pop(index)
                     queue.put(new_node)
+        self.search_length = len(visited)
         self.status = Status.FAILURE
         return False
 

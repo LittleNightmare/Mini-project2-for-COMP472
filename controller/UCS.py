@@ -78,5 +78,6 @@ class UCS(Solver):
                         # replace the old node with the new node
                         queue.queue.pop(index)
                         queue.put(new_node)
+        self.search_length = len(visited)
         self.status = Status.FAILURE
         return False
