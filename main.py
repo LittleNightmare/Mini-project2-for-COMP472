@@ -9,13 +9,14 @@ from controller.output import Output
 
 INPUT_FILE = path.join(path.dirname(__file__), 'rush.txt')
 INPUT_FILE_SAMPLE = path.join(path.dirname(__file__), 'Sample', 'sample-input.txt')
+INPUT_FILE_50 = path.join(path.dirname(__file__), 'output', 'used_puzzle.txt')
 INPUT_FILE_EXAMPLE = path.join(path.dirname(__file__), 'Sample', 'example-input.txt')
 OUTPUT_PATH = path.join(path.dirname(__file__), 'output')
 USED_PUZZLE = path.join(OUTPUT_PATH, 'used_puzzle.txt')
 
 if __name__ == '__main__':
-    is_sample = False
-    input_file = INPUT_FILE_SAMPLE if is_sample else INPUT_FILE
+    is_sample = True
+    input_file = INPUT_FILE_50 if is_sample else INPUT_FILE
     with open(path.join(OUTPUT_PATH, 'short_info.csv'), 'w') as f:
         f.write("Puzzle Number,Algorithm,Heuristic,Length of the Solution,Length of the Search Path,Execution Time(in seconds)\n")
     loader = Loader(input_file, is_sample=is_sample)
