@@ -39,7 +39,7 @@ class Loader(object):
 
         if line[0] != '#' and len(line) > 1:
             n = 6
-            content = line.split(' ')[0]
+            content = line.split('\n')[0].split(' ')[0]
             content = [content[i:i + n] for i in range(0, len(content), n)]
             for i, chars in enumerate(content):
                 for j, char in enumerate(chars):
